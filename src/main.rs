@@ -33,6 +33,8 @@ fn main() {
         "result : {}",
         match (args.year, args.day, args.exercice) {
             (2023, 0, 0) => year2023::day01::eval_file(content),
+            (2023, 1, 0) => year2023::day02::eval_file(content),
+            (2023, 1, 1) => year2023::day02::eval_file_2(content),
             // (0, 1) => day_01::top_three(content),
             // (1, 0) => day_02::count_points(content),
             // (1, 1) => day_02::count_points_with_result(content),
