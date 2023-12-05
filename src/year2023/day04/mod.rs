@@ -25,7 +25,7 @@ fn eval_win(line: &str) -> usize {
 }
 
 pub(crate) fn eval_file(file: &str) -> i32 {
-    file.split('\n')
+    file.lines()
         .filter(|line| !line.is_empty())
         .fold(0, |acc, line| {
             let nbr_match = eval_win(line);
@@ -39,7 +39,7 @@ pub(crate) fn eval_file(file: &str) -> i32 {
 
 pub(crate) fn eval_file_2(file: &str) -> i32 {
     let matching_by_line = file
-        .split('\n')
+        .lines()
         .filter(|line| !line.is_empty())
         .map(eval_win)
         .collect::<Vec<_>>();

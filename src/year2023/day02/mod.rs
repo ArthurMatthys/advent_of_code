@@ -94,13 +94,13 @@ fn get_min_requiered(line: &str) -> i32 {
 }
 
 pub(crate) fn eval_file(file: &str) -> i32 {
-    file.split('\n')
+    file.lines()
         .filter_map(|line| get_line_value(line))
         .fold(0, |acc, v| acc + v)
 }
 
 pub(crate) fn eval_file_2(file: &str) -> i32 {
-    file.split('\n')
+    file.lines()
         .map(|line| get_min_requiered(line))
         .fold(0, |acc, v| acc + v)
 }
