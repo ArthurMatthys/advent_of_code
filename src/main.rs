@@ -37,6 +37,8 @@ fn main() {
             (2023, 1, 1) => year2023::day02::eval_file_2(content),
             (2023, 3, 0) => year2023::day04::eval_file(content),
             (2023, 3, 1) => year2023::day04::eval_file_2(content),
+            (2023, 4, 0) => year2023::day05::eval_file(content) as i32,
+            (2023, 4, 1) => year2023::day05::eval_file_2(content) as i32,
             // (0, 1) => day_01::top_three(content),
             // (1, 0) => day_02::count_points(content),
             // (1, 1) => day_02::count_points_with_result(content),
