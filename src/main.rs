@@ -29,24 +29,6 @@ fn main() {
 
     let content = std::str::from_utf8(&file).expect("cannot convert to utf8");
 
-    println!(
-        "result : {}",
-        match (args.year, args.day, args.exercice) {
-            (2023, 0, 0) => year2023::day01::eval_file(content),
-            (2023, 1, 0) => year2023::day02::eval_file(content),
-            (2023, 1, 1) => year2023::day02::eval_file_2(content),
-            (2023, 3, 0) => year2023::day04::eval_file(content),
-            (2023, 3, 1) => year2023::day04::eval_file_2(content),
-            (2023, 4, 0) => year2023::day05::eval_file(content) as i32,
-            (2023, 4, 1) => year2023::day05::eval_file_2(content) as i32,
-            // (0, 1) => day_01::top_three(content),
-            // (1, 0) => day_02::count_points(content),
-            // (1, 1) => day_02::count_points_with_result(content),
-            // (2, 0) => day_03::get_priorities(content),
-            // (2, 1) => day_03::get_badges(content),
-            // (3, 0) => day_04::get_pairs_number(content),
-            // (3, 1) => day_04::get_overlaps(content),
-            _ => unreachable!(),
-        }
-    );
+        (2023, 6, 0) => year2023::day06::print_sol_1(content),
+        (2023, 6, 1) => year2023::day06::print_sol_2(content),
 }
