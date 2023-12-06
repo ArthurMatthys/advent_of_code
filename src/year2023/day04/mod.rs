@@ -24,7 +24,7 @@ fn eval_win(line: &str) -> usize {
     count
 }
 
-pub(crate) fn eval_file(file: &str) -> i32 {
+fn eval_file(file: &str) -> i32 {
     file.lines()
         .filter(|line| !line.is_empty())
         .fold(0, |acc, line| {
@@ -37,7 +37,7 @@ pub(crate) fn eval_file(file: &str) -> i32 {
         })
 }
 
-pub(crate) fn eval_file_2(file: &str) -> i32 {
+fn eval_file_2(file: &str) -> i32 {
     let matching_by_line = file
         .lines()
         .filter(|line| !line.is_empty())
@@ -54,6 +54,13 @@ pub(crate) fn eval_file_2(file: &str) -> i32 {
         }
     });
     card_count.iter().sum()
+}
+
+pub(crate) fn print_sol_1(file: &str) {
+    print!("res : {}", eval_file(file));
+}
+pub(crate) fn print_sol_2(file: &str) {
+    print!("res : {}", eval_file_2(file));
 }
 
 #[cfg(test)]

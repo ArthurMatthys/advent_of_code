@@ -1,13 +1,3 @@
-pub(crate) fn eval_file(file: &str) -> u64 {
-    let convert: Convert = file.into();
-    convert.to_location()
-}
-
-pub(crate) fn eval_file_2(file: &str) -> u64 {
-    let convert: Convert = file.into();
-    convert.to_location_range()
-}
-
 #[derive(Debug)]
 struct Range {
     dest: u64,
@@ -145,6 +135,22 @@ impl From<&str> for Convert {
             to_location,
         }
     }
+}
+pub(crate) fn eval_file(file: &str) -> u64 {
+    let convert: Convert = file.into();
+    convert.to_location()
+}
+
+pub(crate) fn eval_file_2(file: &str) -> u64 {
+    let convert: Convert = file.into();
+    convert.to_location_range()
+}
+
+pub(crate) fn print_sol_1(file: &str) {
+    print!("res : {}", eval_file(file));
+}
+pub(crate) fn print_sol_2(file: &str) {
+    print!("res : {}", eval_file_2(file));
 }
 
 #[cfg(test)]

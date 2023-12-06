@@ -93,16 +93,23 @@ fn get_min_requiered(line: &str) -> i32 {
     colors.to_res()
 }
 
-pub(crate) fn eval_file(file: &str) -> i32 {
+fn eval_file(file: &str) -> i32 {
     file.lines()
         .filter_map(|line| get_line_value(line))
         .fold(0, |acc, v| acc + v)
 }
 
-pub(crate) fn eval_file_2(file: &str) -> i32 {
+fn eval_file_2(file: &str) -> i32 {
     file.lines()
         .map(|line| get_min_requiered(line))
         .fold(0, |acc, v| acc + v)
+}
+
+pub(crate) fn print_sol_1(file: &str) {
+    print!("res : {}", eval_file(file));
+}
+pub(crate) fn print_sol_2(file: &str) {
+    print!("res : {}", eval_file_2(file));
 }
 
 #[cfg(test)]

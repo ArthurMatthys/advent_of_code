@@ -42,6 +42,10 @@ pub(crate) fn eval_file(file: &str) -> i32 {
         .fold(0, |acc, line| acc + line_value(line))
 }
 
+pub(crate) fn print_sol_1(file: &str) {
+    print!("res : {}", eval_file(file));
+}
+
 #[cfg(test)]
 mod tests {
     use super::eval_file;
