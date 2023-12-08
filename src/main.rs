@@ -29,9 +29,12 @@ fn main() {
 
     let content = std::str::from_utf8(&file).expect("cannot convert to utf8");
 
+    match (args.year, args.day, args.exercice) {
         (2023, 1, 0) => year2023::day01::print_sol_1(content),
         (2023, 2, 0) => year2023::day02::print_sol_1(content),
         (2023, 2, 1) => year2023::day02::print_sol_2(content),
+        (2023, 3, 0) => year2023::day03::print_sol_1(content),
+        (2023, 3, 1) => year2023::day03::print_sol_2(content),
         (2023, 4, 0) => year2023::day04::print_sol_1(content),
         (2023, 4, 1) => year2023::day04::print_sol_2(content),
         (2023, 5, 0) => year2023::day05::print_sol_1(content),
