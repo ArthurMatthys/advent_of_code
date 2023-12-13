@@ -49,6 +49,8 @@ fn main() {
         (2023, 9, 1) => year2023::day09::print_sol_2(content),
         (2023, 11, 0) => year2023::day11::print_sol_1(content),
         (2023, 11, 1) => year2023::day11::print_sol_2(content),
+        (2023, 12, 0) => year2023::day12::print_sol_1(content),
+        (2023, 12, 1) => year2023::day12::print_sol_2(content),
         (2023, 13, 0) => year2023::day13::print_sol_1(content),
         (2023, 13, 1) => year2023::day13::print_sol_2(content),
         _ => unreachable!(),
