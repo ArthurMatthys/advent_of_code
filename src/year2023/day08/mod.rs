@@ -1,5 +1,7 @@
 use std::collections::HashMap;
 
+use num::integer::lcm;
+
 #[derive(Debug)]
 struct Dest<'a> {
     left: &'a str,
@@ -34,8 +36,8 @@ struct Map<'a> {
 }
 
 struct Solver<'a> {
-    positions: Vec<&'a str>,
-    map: Map<'a>,
+    pub(crate) positions: Vec<&'a str>,
+    pub(crate) map: Map<'a>,
 }
 
 impl<'a> Solver<'a> {
@@ -91,6 +93,58 @@ impl<'a> Solver<'a> {
         }
         nbr_step + self.map.moves.len() as u32
     }
+
+    fn get_loop_len(self) -> Vec<usize> {
+        self.positions
+            .into_iter()
+            .map(|pos| {
+                let mut cycle = 0;
+                let mut moves = self.map.moves.chars().cycle();
+                let mut current_pos = pos;
+                while let Some(next_move) = moves.next() {
+                    current_pos = self
+                        .map
+                        .map
+                        .get(current_pos)
+                        .expect("Location present")
+                        .get_dest(Some(next_move));
+                    cycle += 1;
+                    if current_pos.ends_with('Z') {
+                        break;
+                    }
+                }
+                cycle
+            })
+            .collect()
+        // eprintln!("pos : {:?}", self.positions);
+        // while checked > 0 && cycle < 5000 {
+        //     cycle += 1;
+        //     let next_move = moves.next();
+        //     self.positions.iter_mut().enumerate().for_each(|(i, p)| {
+        //         if done.contains(&i) {
+        //             return;
+        //         }
+        //         let v = self
+        //             .map
+        //             .map
+        //             .get(*p)
+        //             .expect("location present")
+        //             .get_dest(next_move);
+        //         eprintln!("from {p:?} to {v:?}");
+        //         if v.ends_with('A') {
+        //             checked -= 1;
+        //             done.push(i);
+        //             ret[i] = Some(cycle)
+        //         } else if v == *p {
+        //             checked -= 1;
+        //             done.push(i);
+        //             ret[i] = Some(0)
+        //         }
+        //         *p = v
+        //     });
+        // }
+        // ret
+    }
 }
 
 impl<'a> From<&'a str> for Map<'a> {
@@ -117,10 +171,13 @@ pub(crate) fn eval_file(file: &str) -> u32 {
     solver.solve(|v| v == &"ZZZ")
 }
 
-pub(crate) fn eval_file_2(file: &str) -> u32 {
+pub(crate) fn eval_file_2(file: &str) -> usize {
     let map: Map = file.into();
-    let mut solver = Solver::new(map, |v| v.ends_with('A'));
-    solver.solve(|v| v.ends_with('Z'))
+    let solver = Solver::new(map, |v| v.ends_with('A'));
+    solver
+        .get_loop_len()
+        .into_iter()
+        .fold(1, |acc, v| lcm(acc, v))
 }
 pub(crate) fn print_sol_1(file: &str) {
     print!("res : {}", eval_file(file));
@@ -151,6 +208,18 @@ AAA = (BBB, BBB)
 BBB = (AAA, ZZZ)
 ZZZ = (ZZZ, ZZZ)"#
     }
+    fn data_2() -> &'static str {
+        r#"LR
+
+11A = (11B, XXX)
+11B = (XXX, 11Z)
+11Z = (11B, XXX)
+22A = (22B, XXX)
+22B = (22C, 22C)
+22C = (22Z, 22Z)
+22Z = (22B, 22B)
+XXX = (XXX, XXX)"#
+    }
     #[test]
     fn test_0() {
         assert_eq!(2, eval_file(data()));
@@ -158,6 +227,6 @@ ZZZ = (ZZZ, ZZZ)"#
     }
     #[test]
     fn test_1() {
-        assert_eq!(6, eval_file_2(data_1()));
+        assert_eq!(6, eval_file_2(data_2()));
     }
 }
