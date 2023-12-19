@@ -130,11 +130,7 @@ pub(crate) fn eval_file(file: &str) -> i64 {
         .map(|l| l.into())
         .collect::<Vec<Row<NormalParse>>>();
     let map: Map = rows.into();
-    // eprintln!("h : {} // w : {}", map.height, map.width);
-    // map.print();
     map.eval_shoelace() + map.area as i64
-    // eprintln!("{map:?}");
-    // 0
 }
 
 pub(crate) fn eval_file_2(file: &str) -> i64 {
