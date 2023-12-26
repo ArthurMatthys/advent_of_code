@@ -61,6 +61,8 @@ fn main() {
         (2023, 15, 1) => year2023::day15::print_sol_2(content),
         (2023, 16, 0) => year2023::day16::print_sol_1(content),
         (2023, 16, 1) => year2023::day16::print_sol_2(content),
+        (2023, 17, 0) => year2023::day17::print_sol_1(content),
+        (2023, 17, 1) => year2023::day17::print_sol_2(content),
         (2023, 18, 0) => year2023::day18::print_sol_1(content),
         (2023, 18, 1) => year2023::day18::print_sol_2(content),
         (2023, 19, 0) => year2023::day19::print_sol_1(content),
